@@ -78,11 +78,10 @@ func (instance *AccessPlease) watchNamespace(kubeClient kubernetes.Interface, co
 
 			switch event.Type {
 			case watch.Added:
-				log.Info("------------------" + groupName)
-				//rolesandbindings.AddReadWriteAccess(kubeClient, namespaceName, groupName, apcache)
-				//apOkta.AddGroup(oktaClient, groupName)
+				rolesandbindings.AddReadWriteAccess(kubeClient, namespaceName, groupName, apcache)
+				apOkta.AddGroup(oktaClient, groupName)
 			case watch.Deleted:
-				//apOkta.DeleteGroup(oktaClient, groupName)
+				apOkta.DeleteGroup(oktaClient, groupName)
 			}
 		}
 	}
